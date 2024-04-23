@@ -4,7 +4,9 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import { PrimeReactProvider } from "primereact/api";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+
+import Navbar from "@/components/common/Navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,8 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <PrimeReactProvider>{children}</PrimeReactProvider>
+      <head>
+        <ColorSchemeScript />
+      </head>
+      <body className={`${inter.className} relative`}>
+        <MantineProvider defaultColorScheme="dark">
+          <Navbar />
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );
